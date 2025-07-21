@@ -17,7 +17,7 @@ namespace UGL.StateMachine
 
         public void Start() => _state.Enter();
 
-        public void Update() => _state.Enter();
+        public void Update() => _state.Update();
 
         public void Apply<T>() where T : State => Apply(typeof(T));
 
