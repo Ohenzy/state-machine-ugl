@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace UGL.StateMachine
 {
@@ -9,6 +10,10 @@ namespace UGL.StateMachine
         internal State Parent { get; private set; }
         internal Queue<State> Children { get; private set; }
 
+        protected internal virtual void Init(GameObject gameObject)
+        {
+        }
+        
         public virtual void Enter()
         {
         }

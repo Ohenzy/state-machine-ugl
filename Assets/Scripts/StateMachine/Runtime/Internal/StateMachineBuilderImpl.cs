@@ -6,11 +6,18 @@ namespace UGL.StateMachine
 {
     internal class StateMachineBuilderImpl : IStateMachineBuilder
     {
+        private readonly GameObject _gameObject;
         private readonly Queue<State> _roots = new();
         private readonly HashSet<Type> _types = new();
         private readonly Dictionary<Type, State> _leafs = new();
+        private readonly Queue<State> _states = new();
 
         private Type _startStateType;
+
+        internal StateMachineBuilderImpl(GameObject gameObject)
+        {
+            _gameObject = gameObject;
+        }
 
         public IStateMachineBuilder Add(State state)
         {
@@ -46,6 +53,8 @@ namespace UGL.StateMachine
                 sm.SetDefaultState(_startStateType);
             }
 
+            InitStates();
+            
             return sm;
         }
 
@@ -63,6 +72,8 @@ namespace UGL.StateMachine
                 }
 
                 state.Depth = depth;
+                _states.Enqueue(state);
+                
                 if (state.Children == null)
                 {
                     _leafs.Add(type, state);
@@ -73,5 +84,21 @@ namespace UGL.StateMachine
                 }
             }
         }
+
+        private void InitStates()
+        {
+            while (_states.Count > 0)
+            {
+                try
+                {
+                    _states.Dequeue().Init(_gameObject);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
+        }
+        
     }
 }

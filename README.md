@@ -1,20 +1,20 @@
-# 🚀 Hierarchy State Machine
+﻿# 🚀 Hierarchy State Machine
 
-[![GitHub release](https://img.shields.io/badge/version-v1.0.1-blue)](https://github.com/Ohenzy/event-bus-ugl/releases/tag/v1.0.1)
+[![GitHub release](https://img.shields.io/badge/version-v1.1.0-blue)](https://github.com/Ohenzy/event-bus-ugl/releases/tag/v1.1.0)
 [![Unity](https://img.shields.io/badge/Unity-black.svg?logo=unity)](https://unity.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-## 📦 **Installation**  
-### **Via Git URL (Unity Package Manager)**  
+## 📦 **Installation**
+### **Via Git URL (Unity Package Manager)**
 1. Open **Package Manager** → **Add package from git URL** → Paste:<br>
-   https://github.com/Ohenzy/state-machine-ugl.git?path=/Assets/Scripts/StateMachine/#v1.0.1
-   
-3. Click **Add**.  
+   https://github.com/Ohenzy/state-machine-ugl.git?path=/Assets/Scripts/StateMachine/#v1.1.0
 
-## 🛠 **Usage**  
-### **1. Add States**  
+3. Click **Add**.
+
+## 🛠 **Usage**
+### **1. Add States**
 ```csharp
 private void Awake()
 {
@@ -33,7 +33,7 @@ private void Awake()
 }
 ```
 
-### **2. Apply state**  
+### **2. Apply state**
 ```csharp
 private void OnCharacterMovement()
 {

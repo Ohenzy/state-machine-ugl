@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace UGL.StateMachine
 {
@@ -10,9 +11,9 @@ namespace UGL.StateMachine
         void Apply<T>() where T : State;
         void Apply(Type type);
 
-        public static IStateMachineBuilder Builder()
+        public static IStateMachineBuilder Builder(GameObject gameObject = null)
         {
-            return new StateMachineBuilderImpl();
+            return new StateMachineBuilderImpl(gameObject);
         }
     }
 }

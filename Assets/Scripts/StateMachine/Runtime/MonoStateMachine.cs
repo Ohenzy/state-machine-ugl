@@ -12,16 +12,13 @@ namespace UGL.StateMachine
         
         protected virtual void Awake()
         {
-            StateMachine = BuildStateMachine(IStateMachine.Builder());
+            StateMachine = BuildStateMachine(IStateMachine.Builder(gameObject));
         }
 
         protected virtual void Start() => StateMachine.Start();
         
         protected virtual void Update() => StateMachine.Update();
 
-        protected void ApplyActualState()
-        {
-            StateMachine.Apply(GetActualState());
-        }
+        protected virtual void ApplyActualState() => StateMachine.Apply(GetActualState());
     }
 }
