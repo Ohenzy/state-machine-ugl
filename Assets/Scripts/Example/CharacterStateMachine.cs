@@ -1,64 +1,41 @@
 ﻿using System;
 using UGL.StateMachine;
+using UnityEngine;
 
 namespace Example
 {
     public class CharacterStateMachine : MonoStateMachine
     {
-        private bool _isMove;
-        private bool _isCombat;
-        private bool _isDodge;
-        
-        protected override IStateMachine BuildStateMachine(IStateMachineBuilder builder)
+        [SerializeField] private bool isMove;
+        [SerializeField] private bool isCombat;
+        [SerializeField] private bool isDodge;
+
+        private void OnValidate()
         {
-            return builder.StartWith<CharacterIdleState>()
-                .Add(new CharacterDodgeState())
-                .Add(new CharacterState()
-                    .Add(new CharacterIdleState())
-                    .Add(new CharacterMovementState())
-                )
-                .Add(new CharacterCombatState()
-                    .Add(new CharacterCombatIdleState())
-                    .Add(new CharacterCombatMovementState())
-                )
-                .Build();
+            if (StateMachine == null)
+            {
+                return;
+            }
+            ApplyActualState();
         }
 
         protected override Type GetActualState()
         {
-            if (_isDodge)
+            if (isDodge)
             {
                 return typeof(CharacterDodgeState);
             }
             
-            if (_isCombat)
+            if (isCombat)
             {
-                return _isMove 
+                return isMove 
                     ? typeof(CharacterCombatMovementState) 
                     : typeof(CharacterCombatIdleState);
             }
             
-            return _isMove 
+            return isMove 
                 ? typeof(CharacterMovementState) 
                 : typeof(CharacterIdleState);
-        }
-
-        private void OnCharacterDodge(bool isDodge)
-        {
-            _isDodge = isDodge;
-            ApplyActualState();
-        }
-        
-        private void OnCharacterCombat(bool isCombat)
-        {
-            _isCombat = isCombat;
-            ApplyActualState();
-        }
-
-        private void OnCharacterMovement(bool isMove)
-        {
-            _isMove = isMove;
-            ApplyActualState();
         }
     }
 }

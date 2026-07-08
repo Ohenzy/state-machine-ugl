@@ -1,7 +1,6 @@
 ﻿namespace Example
 {
-    public class CharacterIdleState : CharacterState
+    public class CharacterIdleState : CharacterStateBase
     {
-        
     }
 }

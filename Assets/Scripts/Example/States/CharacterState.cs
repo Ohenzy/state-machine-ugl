@@ -1,8 +1,6 @@
-﻿using UGL.StateMachine;
-
-namespace Example
+﻿namespace Example
 {
-    public class CharacterState : State
+    public class CharacterState : CharacterStateBase
     {
     }
 }

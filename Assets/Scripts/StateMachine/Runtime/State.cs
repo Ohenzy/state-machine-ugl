@@ -1,18 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UGL.StateMachine
 {
-    public abstract class State
+    public abstract class State : MonoBehaviour
     {
         internal int Depth;
-        
-        internal State Parent { get; private set; }
-        internal Queue<State> Children { get; private set; }
-
-        protected internal virtual void Init(GameObject gameObject)
-        {
-        }
+        internal State Parent; 
         
         public virtual void Enter()
         {
@@ -22,17 +15,8 @@ namespace UGL.StateMachine
         {
         }
 
-        public virtual void Update()
+        public virtual void Tick()
         {
-        }
-
-        public State Add(State state)
-        {
-            state.Parent = this;
-
-            Children ??= new Queue<State>();
-            Children.Enqueue(state);
-            return this;
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using UGL.StateMachine;
-
-namespace Example
+﻿namespace Example
 {
-    public class CharacterDodgeState : State
+    public class CharacterDodgeState : CharacterStateBase
     {
-        
     }
 }

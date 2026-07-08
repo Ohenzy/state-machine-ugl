@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace UGL.StateMachine
@@ -8,16 +9,17 @@ namespace UGL.StateMachine
     {
         private readonly Dictionary<Type, State> _states;
 
-        private State _state = new DefaultState();
+        private State _state;
 
-        internal StateMachineImpl(Dictionary<Type, State> states)
+        internal StateMachineImpl(State defaultState, List<State> states)
         {
-            _states = states;
+            _state = defaultState;
+            _states = states.ToDictionary(state => state.GetType());
         }
 
-        public void Start() => _state.Enter();
+        public void Start() => EnterStateRecursive(_state);
 
-        public void Update() => _state.Update();
+        public void Tick() => _state.Tick();
 
         public void Apply<T>() where T : State => Apply(typeof(T));
 
@@ -92,6 +94,21 @@ namespace UGL.StateMachine
             {
                 enters.Pop().Enter();
             }
+        }
+
+        private static void EnterStateRecursive(State state)
+        {
+            if (!state)
+            {
+                return;
+            }
+
+            if (state.Parent)
+            {
+                EnterStateRecursive(state.Parent);
+            }
+
+            state.Enter();
         }
     }
 }

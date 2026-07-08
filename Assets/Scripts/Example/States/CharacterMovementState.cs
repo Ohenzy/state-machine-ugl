@@ -1,7 +1,6 @@
 ﻿namespace Example
 {
-    public class CharacterMovementState : CharacterState
+    public class CharacterMovementState : CharacterStateBase
     {
-        
     }
 }

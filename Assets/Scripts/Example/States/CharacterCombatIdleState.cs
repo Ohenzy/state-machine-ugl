@@ -1,9 +1,6 @@
-﻿using UGL.StateMachine;
-
-namespace Example
+﻿namespace Example
 {
-    public class CharacterCombatIdleState : State
+    public class CharacterCombatIdleState : CharacterStateBase
     {
-        
     }
 }
